@@ -5,6 +5,7 @@ import type { ComponentProps } from "react";
 import { DiscountBadge } from "@/components/product/discount-badge";
 import { Price } from "@/components/product/price";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
+import { shopConfig } from "@/lib/config";
 
 function ProductCard({ className, children, ...props }: ComponentProps<"article">) {
   return (
@@ -54,7 +55,7 @@ function ProductCardImage({
   return (
     <div
       data-slot="product-card-image"
-      className={cn("relative aspect-square overflow-hidden", className)}
+      className={cn("relative aspect-square overflow-hidden bg-surface-alt", className)}
     >
       {src ? (
         <Image
@@ -69,10 +70,8 @@ function ProductCardImage({
         <ImagePlaceholder className="size-full" />
       )}
       {outOfStock && (
-        <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-          <span className="text-destructive-foreground font-medium text-xs px-2 py-1 bg-destructive rounded">
-            {outOfStockText}
-          </span>
+        <div className="absolute inset-0 bg-background/60 flex items-end justify-center p-2.5">
+          <span className="text-xs font-medium text-foreground">{outOfStockText}</span>
         </div>
       )}
     </div>
@@ -153,7 +152,9 @@ function ProductCardPrice({
               currencyCode={compareAtCurrencyCode}
               className="text-xs text-muted-foreground line-through"
             />
-            <DiscountBadge percent={discountPercent} />
+            {shopConfig.merchandising.discountBadge.isEnabled && (
+              <DiscountBadge percent={discountPercent} />
+            )}
           </>
         )}
       </div>

@@ -3,6 +3,7 @@ import type { ComponentProps } from "react";
 
 import { DiscountBadge } from "@/components/product/discount-badge";
 import { Price } from "@/components/product/price";
+import { shopConfig } from "@/lib/config";
 import { isMarkedDown } from "@/lib/product";
 
 interface ProductPriceProps extends ComponentProps<"div"> {
@@ -32,7 +33,9 @@ export function ProductPrice({
           className="text-xl line-through text-foreground/35"
         />
       )}
-      {discountPercent && <DiscountBadge percent={discountPercent} />}
+      {shopConfig.merchandising.discountBadge.isEnabled && discountPercent && (
+        <DiscountBadge percent={discountPercent} />
+      )}
     </div>
   );
 }

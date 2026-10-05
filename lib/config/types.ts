@@ -9,16 +9,48 @@ export interface BrandConfig {
     logoDark: string;
     ogImage: string;
   };
+  // Product brands the store carries, in display order. A brand opens its Shopify collection when
+  // it has one; otherwise it opens a title search until product vendors are corrected.
+  brands: ShopBrand[];
   // Descriptive brand facts only; Shopify pricing context comes from `localization`.
   country: string;
   currency: string;
   defaultLocale: string;
   description: string;
   domain: string | null;
+  // Homepage composition. Collection handles must exist in the store; missing ones are skipped.
+  home: {
+    featuredCollections: string[];
+    hero: {
+      eyebrow: string;
+      heading: string;
+      primaryCta: BrandLink;
+      secondaryCta: BrandLink | null;
+    };
+  };
   name: string;
+  // Top-level header links, in order.
+  navigation: BrandLink[];
   social: Record<BrandSocialPlatform, string | null>;
   supportEmail: string | null;
   supportedLocales: string[];
+}
+
+export type ShopBrand = ({ collection: string } | { searchQuery: string }) & {
+  // Official logo saved under public/brand/logos; see the README there for sources.
+  logo?: BrandLogo;
+  name: string;
+};
+
+export interface BrandLogo {
+  // Light-coloured logos need a dark tile to stay visible.
+  isOnDark?: boolean;
+  src: string;
+}
+
+export interface BrandLink {
+  title: string;
+  url: string;
 }
 
 export type BrandSocialPlatform =
@@ -77,6 +109,12 @@ export interface ShopConfig {
   brand: BrandConfig;
   localization: CommerceLocale & {
     locale: string;
+  };
+  merchandising: {
+    // Percentage-off pills. Off for SahamGate: a markdown shows only as a muted compare-at price.
+    discountBadge: {
+      isEnabled: boolean;
+    };
   };
   pdp: {
     bundles: {

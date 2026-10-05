@@ -1,6 +1,6 @@
 import { BotIdClient } from "botid/client";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Instrument_Sans } from "next/font/google";
 
 import "./globals.css";
 import { Suspense } from "react";
@@ -19,14 +19,17 @@ import { seedCartData } from "@/lib/cart/server";
 import { shopConfig } from "@/lib/config";
 import { buildAlternates } from "@/lib/seo";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Direction C type pair: a contemporary display serif and a calm grotesk for UI text.
+// Fraunces' SOFT and WONK axes default to 0 (the restrained cut), so only optical size is loaded.
+const displaySerif = Fraunces({
+  axes: ["opsz"],
   subsets: ["latin"],
+  variable: "--font-display-latin",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const textSans = Instrument_Sans({
   subsets: ["latin"],
+  variable: "--font-text",
 });
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -39,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <CartStandardActionsScript />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-dvh flex-col font-sans antialiased`}
+        className={`${displaySerif.variable} ${textSans.variable} flex min-h-dvh flex-col font-sans antialiased`}
       >
         <a
           href="#main-content"
