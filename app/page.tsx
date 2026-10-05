@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
+import {
+  CollectionDoorways,
+  CollectionDoorwaysSkeleton,
+} from "@/components/home/collection-doorways";
+import { HomeHero } from "@/components/home/hero";
 import { ProductsGrid } from "@/components/product/products-grid";
 import { Container } from "@/components/ui/container";
 import { Page } from "@/components/ui/page";
@@ -24,27 +30,38 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function HomePage() {
+  const { featuredCollections, hero } = shopConfig.brand.home;
+  const doorwaysTitle = "Shop by collection";
   return (
     <Page className="pt-0">
       <Sections>
-        <section className="grid">
-          <div className="col-start-1 row-start-1 hidden md:block md:aspect-4/1" />
-          <div className="relative col-start-1 row-start-1 flex items-center justify-center px-5 py-10 lg:px-10">
-            <div className="flex flex-col items-center text-center gap-2.5">
-              <h1 className="text-3xl md:text-5xl max-w-3xl text-foreground">
-                {shopConfig.site.name}
-              </h1>
-              <p className="text-sm md:text-base max-w-xl text-foreground">
-                {shopConfig.site.description}
-              </p>
-            </div>
-          </div>
-        </section>
+        <HomeHero
+          description={shopConfig.site.description}
+          eyebrow={hero.eyebrow}
+          heading={hero.heading}
+          primaryCta={hero.primaryCta}
+          secondaryCta={hero.secondaryCta}
+        />
+
+        {featuredCollections.length > 0 && (
+          <Container>
+            <Suspense
+              fallback={
+                <CollectionDoorwaysSkeleton
+                  count={featuredCollections.length}
+                  title={doorwaysTitle}
+                />
+              }
+            >
+              <CollectionDoorways handles={featuredCollections} title={doorwaysTitle} />
+            </Suspense>
+          </Container>
+        )}
 
         <Container>
           <ProductsGrid
-            title="Products"
-            eagerCount={4}
+            title="Explore the collection"
+            eagerCount={0}
             limit={8}
             collectionUrl="/collections/all"
           />

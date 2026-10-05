@@ -15,10 +15,27 @@ export interface BrandConfig {
   defaultLocale: string;
   description: string;
   domain: string | null;
+  // Homepage composition. Collection handles must exist in the store; missing ones are skipped.
+  home: {
+    featuredCollections: string[];
+    hero: {
+      eyebrow: string;
+      heading: string;
+      primaryCta: BrandLink;
+      secondaryCta: BrandLink | null;
+    };
+  };
   name: string;
+  // Top-level header links, in order.
+  navigation: BrandLink[];
   social: Record<BrandSocialPlatform, string | null>;
   supportEmail: string | null;
   supportedLocales: string[];
+}
+
+export interface BrandLink {
+  title: string;
+  url: string;
 }
 
 export type BrandSocialPlatform =
@@ -77,6 +94,12 @@ export interface ShopConfig {
   brand: BrandConfig;
   localization: CommerceLocale & {
     locale: string;
+  };
+  merchandising: {
+    // Percentage-off pills. Off for SahamGate: a markdown shows only as a muted compare-at price.
+    discountBadge: {
+      isEnabled: boolean;
+    };
   };
   pdp: {
     bundles: {

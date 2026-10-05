@@ -1,0 +1,26 @@
+/*
+ * SahamGate brand tokens (Direction C: Immersive Discovery Luxury).
+ * Components never read these: globals.css maps them onto semantic tokens.
+ * Another brand ships its own file with the same --brand-* names.
+ */
+:root {
+  --brand-ivory: #f7f3ee;
+  --brand-dune: #ede4d8;
+  --brand-night-ink: #1f1c1b;
+  --brand-driftwood: #6b635b;
+  --brand-sandline: #d9cec0;
+  --brand-gulf: #1f4e5a;
+  --brand-saffron: #b8862b;
+  --brand-mist: #f2f0ec;
+
+  /* Fragrance-family atmospheres: flat tonal fields, never gradients. */
+  --brand-atmosphere-citrus: #f1e3bf;
+  --brand-atmosphere-floral: #ead3cf;
+  --brand-atmosphere-fresh: #d6e3e3;
+  --brand-atmosphere-woody: #c9b8a3;
+  --brand-atmosphere-amber: #d8b48a;
+  --brand-atmosphere-oud: #3a2a30;
+  --brand-atmosphere-musk: #e8e1da;
+
+  --brand-radius: 0.375rem;
+}

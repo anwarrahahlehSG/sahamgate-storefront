@@ -13,19 +13,22 @@ import { QuickLinks } from "./quick-links";
 import { SearchModal } from "./search-modal";
 
 export function Nav() {
-  const items: MenuItem[] = [
-    { id: "default-nav-shop", items: [], title: "Shop", url: "/collections/all" },
-  ];
+  const items: MenuItem[] = shopConfig.brand.navigation.map((link) => ({
+    id: `nav-${link.url}`,
+    items: [],
+    title: link.title,
+    url: link.url,
+  }));
   return (
     <nav
-      className="sticky top-0 z-30 w-full bg-background pt-[env(safe-area-inset-top,0px)] transition-shadow duration-250"
+      className="sticky top-0 z-30 w-full border-b border-border bg-background pt-[env(safe-area-inset-top,0px)] transition-shadow duration-250"
       id="nav-outer"
     >
       <Container className="flex h-16 items-center gap-2.5 md:gap-5">
         <MobileMenu items={items} />
 
         <Link className="flex items-center shrink-0" href="/">
-          <span className="text-xl leading-4">{shopConfig.site.name}</span>
+          <span className="font-display text-2xl leading-none">{shopConfig.site.name}</span>
         </Link>
 
         <QuickLinks items={items} />

@@ -18,7 +18,27 @@ const brand: BrandConfig = {
   description:
     "A UAE-based online marketplace offering perfumes, beauty products, fashion, accessories, electronics, and lifestyle products.",
   domain: null,
+  home: {
+    featuredCollections: [
+      "perfumes",
+      "ibraq-ibraheem-al-qurashi",
+      "abdul-samad-alqurashi",
+      "gifts-sets",
+    ],
+    hero: {
+      eyebrow: "UAE online marketplace",
+      heading: "Find a scent that feels like you",
+      primaryCta: { title: "Explore perfumes", url: "/collections/perfumes" },
+      secondaryCta: { title: "Shop everything", url: "/collections/all" },
+    },
+  },
   name: "SahamGate",
+  navigation: [
+    { title: "Perfumes", url: "/collections/perfumes" },
+    { title: "Gift sets", url: "/collections/gifts-sets" },
+    { title: "Collections", url: "/collections" },
+    { title: "Shop all", url: "/collections/all" },
+  ],
   social: {
     facebook: "https://www.facebook.com/profile.php?id=61575978154923",
     instagram: "https://www.instagram.com/sahamgateshop",
@@ -59,9 +79,14 @@ export const shopConfig = {
   },
   brand,
   localization: {
-    country: "US",
+    country: "AE",
     language: "EN",
-    locale: "en-US" as const,
+    locale: "en-AE" as const,
+  },
+  merchandising: {
+    discountBadge: {
+      isEnabled: false,
+    },
   },
   pdp: {
     bundles: {
