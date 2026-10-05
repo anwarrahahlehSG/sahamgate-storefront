@@ -36,9 +36,17 @@ export interface BrandConfig {
   supportedLocales: string[];
 }
 
-export type ShopBrand =
-  | { collection: string; name: string }
-  | { name: string; searchQuery: string };
+export type ShopBrand = ({ collection: string } | { searchQuery: string }) & {
+  // Official logo saved under public/brand/logos; see the README there for sources.
+  logo?: BrandLogo;
+  name: string;
+};
+
+export interface BrandLogo {
+  // Light-coloured logos need a dark tile to stay visible.
+  isOnDark?: boolean;
+  src: string;
+}
 
 export interface BrandLink {
   title: string;
