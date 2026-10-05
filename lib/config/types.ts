@@ -9,6 +9,9 @@ export interface BrandConfig {
     logoDark: string;
     ogImage: string;
   };
+  // Product brands the store carries, in display order. A brand opens its Shopify collection when
+  // it has one; otherwise it opens a title search until product vendors are corrected.
+  brands: ShopBrand[];
   // Descriptive brand facts only; Shopify pricing context comes from `localization`.
   country: string;
   currency: string;
@@ -32,6 +35,10 @@ export interface BrandConfig {
   supportEmail: string | null;
   supportedLocales: string[];
 }
+
+export type ShopBrand =
+  | { collection: string; name: string }
+  | { name: string; searchQuery: string };
 
 export interface BrandLink {
   title: string;

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "./brands/sahamgate.css";
+@import "../styles/brands/sahamgate.css";
 
 @plugin '@tailwindcss/typography';
 

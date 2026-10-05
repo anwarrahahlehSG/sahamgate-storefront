@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 
+import { BrandGrid } from "@/components/brands/brand-grid";
 import {
   CollectionDoorways,
   CollectionDoorwaysSkeleton,
@@ -55,6 +57,23 @@ export default function HomePage() {
             >
               <CollectionDoorways handles={featuredCollections} title={doorwaysTitle} />
             </Suspense>
+          </Container>
+        )}
+
+        {shopConfig.brand.brands.length > 0 && (
+          <Container>
+            <div className="grid gap-4">
+              <div className="flex items-center justify-between">
+                <h2 className="font-display text-2xl sm:text-3xl">Shop by brand</h2>
+                <Link
+                  href="/brands"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  All brands
+                </Link>
+              </div>
+              <BrandGrid brands={shopConfig.brand.brands.slice(0, 5)} />
+            </div>
           </Container>
         )}
 
