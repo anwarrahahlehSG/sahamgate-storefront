@@ -31,7 +31,7 @@ async function buildProductMetadata(handle: string, canonicalPath: string): Prom
           alt: product.featuredImage.altText,
         },
       ]
-    : ["/og-default.png"];
+    : [shopConfig.brand.assets.ogImage];
   return {
     title: product.seo.title,
     description: product.seo.description,

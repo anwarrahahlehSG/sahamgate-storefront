@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { SEARCH_SORT_EXCLUDE } from "@/lib/collections";
 import { readBrowseState } from "@/lib/collections/server";
 import type { BrowseResults, BrowseState } from "@/lib/collections/types";
+import { shopConfig } from "@/lib/config";
 import { formatCount } from "@/lib/content";
 import { fetchSearchResults } from "@/lib/search/server";
 import { buildAlternates, buildOpenGraph } from "@/lib/seo";
@@ -48,7 +49,7 @@ export async function generateMetadata({ searchParams }: PageProps<"/search">): 
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-default.png"],
+      images: [shopConfig.brand.assets.ogImage],
     },
     robots: {
       index: false,

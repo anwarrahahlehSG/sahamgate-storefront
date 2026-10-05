@@ -2,6 +2,33 @@ import type { ConsentConfig, I18nConfig } from "@shopify/hydrogen";
 import type { initBotId } from "botid/client/core";
 import type { NextConfig } from "next";
 
+export interface BrandConfig {
+  assets: {
+    favicon: string;
+    logo: string;
+    logoDark: string;
+    ogImage: string;
+  };
+  // Descriptive brand facts only; Shopify pricing context comes from `localization`.
+  country: string;
+  currency: string;
+  defaultLocale: string;
+  description: string;
+  domain: string | null;
+  name: string;
+  social: Record<BrandSocialPlatform, string | null>;
+  supportEmail: string | null;
+  supportedLocales: string[];
+}
+
+export type BrandSocialPlatform =
+  | "facebook"
+  | "instagram"
+  | "tiktok"
+  | "whatsapp"
+  | "x"
+  | "youtube";
+
 export type CommerceLocale = Pick<I18nConfig, "country" | "language">;
 
 export interface NextConfigContext {
@@ -47,6 +74,7 @@ export interface ShopConfig {
     >;
     isEnabled: boolean;
   };
+  brand: BrandConfig;
   localization: CommerceLocale & {
     locale: string;
   };

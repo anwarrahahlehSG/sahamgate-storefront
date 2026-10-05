@@ -7,7 +7,7 @@ function buildSiteSchema() {
       "@type": "Organization",
       name: shopConfig.site.name,
       url: shopConfig.site.url,
-      logo: `${shopConfig.site.url}/og-default.png`,
+      logo: `${shopConfig.site.url}${shopConfig.brand.assets.logo}`,
     },
     {
       "@context": "https://schema.org",

@@ -12,7 +12,9 @@ import { SocialLinks } from "./social-links";
 import type { SocialLink } from "./social-links";
 
 export async function Footer() {
-  const socialLinks: SocialLink[] = [];
+  const socialLinks = Object.entries(shopConfig.brand.social).flatMap(([platform, url]) =>
+    url ? [{ platform, url } as SocialLink] : [],
+  );
   const items: MenuItem[] = [];
   const policies = await getShopPolicies({}).catch(() => []);
   return (

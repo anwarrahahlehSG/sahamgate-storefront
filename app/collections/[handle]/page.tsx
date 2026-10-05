@@ -9,6 +9,7 @@ import {
   getCollections,
   readBrowseState,
 } from "@/lib/collections/server";
+import { shopConfig } from "@/lib/config";
 import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 import { PLACEHOLDER_HANDLE } from "@/lib/static-params";
 
@@ -51,7 +52,7 @@ export async function generateMetadata({
         card: "summary_large_image",
         title,
         description,
-        images: ["/og-default.png"],
+        images: [shopConfig.brand.assets.ogImage],
       },
     };
   }
@@ -73,7 +74,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-default.png"],
+      images: [shopConfig.brand.assets.ogImage],
     },
   };
 }
