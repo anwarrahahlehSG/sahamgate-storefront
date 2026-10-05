@@ -20,9 +20,9 @@ const brand: BrandConfig = {
   domain: null,
   name: "SahamGate",
   social: {
-    facebook: null,
-    instagram: null,
-    tiktok: null,
+    facebook: "https://www.facebook.com/profile.php?id=61575978154923",
+    instagram: "https://www.instagram.com/sahamgateshop",
+    tiktok: "https://www.tiktok.com/@saham.gate",
     whatsapp: null,
     x: null,
     youtube: null,
