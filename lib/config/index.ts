@@ -1,8 +1,35 @@
-import type { ShopConfig } from "./types";
+import type { BrandConfig, ShopConfig } from "./types";
 
 const defaultUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : "http://localhost:3000";
+
+// Swap this block to run the same storefront for another brand.
+const brand: BrandConfig = {
+  assets: {
+    favicon: "/brand/favicon.ico",
+    logo: "/brand/logo.svg",
+    logoDark: "/brand/logo-dark.svg",
+    ogImage: "/brand/og-default.jpg",
+  },
+  country: "AE",
+  currency: "AED",
+  defaultLocale: "en-AE",
+  description:
+    "A UAE-based online marketplace offering perfumes, beauty products, fashion, accessories, electronics, and lifestyle products.",
+  domain: null,
+  name: "SahamGate",
+  social: {
+    facebook: "https://www.facebook.com/profile.php?id=61575978154923",
+    instagram: "https://www.instagram.com/sahamgateshop",
+    tiktok: "https://www.tiktok.com/@saham.gate",
+    whatsapp: null,
+    x: null,
+    youtube: null,
+  },
+  supportEmail: null,
+  supportedLocales: ["en-AE", "ar-AE"],
+};
 
 export const shopConfig = {
   agent: {
@@ -30,6 +57,7 @@ export const shopConfig = {
     checkLevel: "basic",
     isEnabled: false,
   },
+  brand,
   localization: {
     country: "US",
     language: "EN",
@@ -66,9 +94,8 @@ export const shopConfig = {
     },
   },
   site: {
-    description:
-      "A Storefront Built on Vercel Shop. Agent-ready commerce, powered by Shopify, Next, and Eve.",
-    name: "Vercel Shop",
+    description: brand.description,
+    name: brand.name,
     url: defaultUrl,
   },
 } satisfies ShopConfig;

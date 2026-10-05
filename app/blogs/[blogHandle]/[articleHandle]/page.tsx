@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ArticlePage } from "@/components/blog/article-page";
 import { getBlog, getBlogArticle } from "@/lib/blog/server";
+import { shopConfig } from "@/lib/config";
 import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 import { getShopifySitemapPage } from "@/lib/seo/server";
 import { PLACEHOLDER_HANDLE } from "@/lib/static-params";
@@ -47,7 +48,7 @@ export async function generateMetadata({
           width: article.image.width,
         },
       ]
-    : ["/og-default.png"];
+    : [shopConfig.brand.assets.ogImage];
   return {
     alternates: buildAlternates({ pathname }),
     description: article.seo.description,

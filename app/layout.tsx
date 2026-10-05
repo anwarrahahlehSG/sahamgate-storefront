@@ -71,11 +71,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 export const generateMetadata = async (): Promise<Metadata> => {
   return {
     alternates: buildAlternates({ pathname: "/" }),
-    description: `Shop premium products, curated collections, and latest offers from ${shopConfig.site.name}.`,
+    description: shopConfig.site.description,
     generator: shopConfig.site.name,
+    icons: { icon: shopConfig.brand.assets.favicon },
     metadataBase: new URL(shopConfig.site.url),
     openGraph: {
-      images: [{ url: "/og-default.png", width: 1200, height: 630 }],
+      images: [shopConfig.brand.assets.ogImage],
     },
     title: {
       default: shopConfig.site.name,

@@ -58,7 +58,7 @@ export function buildOpenGraph({
   description,
   url,
   type,
-  images = ["/og-default.png"],
+  images = [shopConfig.brand.assets.ogImage],
 }: {
   title: string;
   description?: string;

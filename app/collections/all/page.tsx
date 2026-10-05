@@ -7,6 +7,7 @@ import {
   getAllProductsCollection,
   readBrowseState,
 } from "@/lib/collections/server";
+import { shopConfig } from "@/lib/config";
 import { fetchSearchResults } from "@/lib/search/server";
 import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
@@ -29,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-default.png"],
+      images: [shopConfig.brand.assets.ogImage],
     },
   };
 }

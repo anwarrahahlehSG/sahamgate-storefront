@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Page } from "@/components/ui/page";
 import { Sections } from "@/components/ui/sections";
 import { getCollectionsListing } from "@/lib/collections/server";
+import { shopConfig } from "@/lib/config";
 import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-default.png"],
+      images: [shopConfig.brand.assets.ogImage],
     },
   };
 }
