@@ -65,6 +65,8 @@ export interface ProductCard {
   isGiftCard: boolean;
   maxPrice: Money;
   price: Money;
+  // Set only when one tap can add it: a single, in-stock variant with no plan or options to pick.
+  quickAddVariantId?: string;
   title: string;
   vendor?: string;
 }

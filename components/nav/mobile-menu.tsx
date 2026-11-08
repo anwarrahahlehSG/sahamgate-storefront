@@ -99,13 +99,19 @@ function NestedItems({ items, onLinkClick }: { items: MenuItem[]; onLinkClick: (
     <ul className="flex flex-col gap-3 pl-3">
       {items.map((item) => (
         <li key={item.id} className="space-y-2">
-          <MenuLink
-            url={item.url}
-            onClick={onLinkClick}
-            className="block text-sm font-medium hover:opacity-70 transition-opacity"
-          >
-            {item.title}
-          </MenuLink>
+          {item.url ? (
+            <MenuLink
+              url={item.url}
+              onClick={onLinkClick}
+              className="block text-sm font-medium hover:opacity-70 transition-opacity"
+            >
+              {item.title}
+            </MenuLink>
+          ) : (
+            <span className="block text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              {item.title}
+            </span>
+          )}
           {item.items.length > 0 && (
             <ul className="flex flex-col gap-2 pl-3">
               {item.items.map((leaf) => (

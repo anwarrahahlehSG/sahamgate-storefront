@@ -11,6 +11,7 @@ import type {
 import { shopConfig } from "@/lib/config";
 import type { CommerceLocale } from "@/lib/config/types";
 import { tagProducts } from "@/lib/product/server";
+import type { ProductCard } from "@/lib/product/types";
 import {
   fetchCollection,
   fetchCollections,
@@ -97,6 +98,26 @@ function recordToSearchParams(
     }
   }
   return params;
+}
+
+// A short, fixed slice of a collection for homepage rails. Unlike browse pages it has no cursor,
+// so caching it can't drift or duplicate products.
+export async function getCollectionProductsPreview(params: {
+  handle: string;
+  limit: number;
+  locale?: CommerceLocale;
+}): Promise<ProductCard[]> {
+  "use cache: remote";
+  cacheLife("max");
+  cacheTag("collections", `collection-${params.handle}`, "products-index");
+
+  const { products } = await fetchCollectionProducts({
+    collection: params.handle,
+    limit: params.limit,
+    locale: params.locale,
+  });
+  tagProducts(products);
+  return products;
 }
 
 // Browse pages and facets stay uncached: cached cursor pages drift apart and duplicate boundary products, and Search & Discovery changes must appear immediately.

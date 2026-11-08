@@ -41,15 +41,16 @@ function NavItem({ item }: { item: MenuItem }) {
       <div
         className={cn(
           "absolute inset-x-0 top-full z-40",
-          "invisible opacity-0",
-          "group-hover:visible group-hover:opacity-100",
+          "invisible -translate-y-2 opacity-0",
+          // Hover intent: opening waits 150ms so passing the pointer over the bar doesn't flash menus.
+          "group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-150",
           // :focus-visible (not :focus-within) so post-click mouse focus doesn't pin the menu open.
-          "group-has-[:focus-visible]:visible group-has-[:focus-visible]:opacity-100",
-          "transition-opacity duration-150",
+          "group-has-[:focus-visible]:visible group-has-[:focus-visible]:translate-y-0 group-has-[:focus-visible]:opacity-100",
+          "transition-[opacity,translate,visibility] duration-(--brand-duration-base) ease-brand",
           "bg-background border-b shadow-md",
         )}
       >
-        <div className="px-5 lg:px-10 pb-5">
+        <div className="mx-auto max-w-384 px-5 pt-6 pb-8 lg:px-10">
           <div className="grid grid-cols-5 gap-5">
             {columns.map((column) => (
               <div key={column.id}>
@@ -61,7 +62,9 @@ function NavItem({ item }: { item: MenuItem }) {
                     {column.title}
                   </MenuLink>
                 ) : (
-                  <h3 className="text-sm font-semibold mb-3">{column.title}</h3>
+                  <h3 className="mb-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    {column.title}
+                  </h3>
                 )}
                 {column.items.length > 0 && (
                   <ul className="space-y-2">

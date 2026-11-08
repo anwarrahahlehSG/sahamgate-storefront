@@ -12,6 +12,9 @@
   --brand-gulf: #1f4e5a;
   --brand-saffron: #b8862b;
   --brand-mist: #f2f0ec;
+  --brand-gulf-deep: #173e48;
+  /* Saffron itself is decorative only; text in saffron uses the ink cut. */
+  --brand-saffron-ink: #8a6418;
 
   /* Fragrance-family atmospheres: flat tonal fields, never gradients. */
   --brand-atmosphere-citrus: #f1e3bf;
@@ -23,4 +26,11 @@
   --brand-atmosphere-musk: #e8e1da;
 
   --brand-radius: 0.375rem;
+
+  /* Motion: four durations and one easing, shared by every transition. */
+  --brand-duration-quick: 160ms;
+  --brand-duration-base: 240ms;
+  --brand-duration-slow: 320ms;
+  --brand-duration-slower: 480ms;
+  --brand-ease: cubic-bezier(0.2, 0, 0, 1);
 }

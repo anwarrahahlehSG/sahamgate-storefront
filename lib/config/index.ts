@@ -66,8 +66,22 @@ const brand: BrandConfig = {
   },
   name: "SahamGate",
   navigation: [
-    { title: "Perfumes", url: "/collections/perfumes" },
-    { title: "Brands", url: "/brands" },
+    {
+      columns: [
+        {
+          links: [
+            { title: "All perfumes", url: "/collections/perfumes" },
+            { title: "Gift sets", url: "/collections/gifts-sets" },
+            { title: "Shop all", url: "/collections/all" },
+          ],
+          title: "Shop",
+        },
+      ],
+      title: "Perfumes",
+      url: "/collections/perfumes",
+      withBrands: true,
+    },
+    { title: "Brands", url: "/brands", withBrands: true },
     { title: "Gift sets", url: "/collections/gifts-sets" },
     { title: "Collections", url: "/collections" },
     { title: "Shop all", url: "/collections/all" },
