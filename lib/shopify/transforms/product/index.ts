@@ -178,6 +178,11 @@ function transformProductCard(
     (value) => value.name.toLowerCase() === selectedOptionValue?.toLowerCase(),
   )?.firstSelectableVariant;
   const cardVariant = matchedVariant ?? defaultVariant;
+  const canQuickAdd =
+    product.variantsCount?.count === 1 &&
+    !product.isGiftCard &&
+    !product.requiresSellingPlan &&
+    Boolean(defaultVariant?.availableForSale);
 
   return {
     id: product.id,
@@ -191,6 +196,7 @@ function transformProductCard(
     availableForSale: product.availableForSale,
     isGiftCard: product.isGiftCard,
     defaultVariantSelectedOptions: cardVariant?.selectedOptions ?? [],
+    quickAddVariantId: canQuickAdd ? defaultVariant?.id : undefined,
   };
 }
 

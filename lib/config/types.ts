@@ -29,8 +29,8 @@ export interface BrandConfig {
     };
   };
   name: string;
-  // Top-level header links, in order.
-  navigation: BrandLink[];
+  // Top-level header links, in order. Links with columns open a mega menu.
+  navigation: BrandNavLink[];
   social: Record<BrandSocialPlatform, string | null>;
   supportEmail: string | null;
   supportedLocales: string[];
@@ -51,6 +51,12 @@ export interface BrandLogo {
 export interface BrandLink {
   title: string;
   url: string;
+}
+
+export interface BrandNavLink extends BrandLink {
+  columns?: Array<{ links: BrandLink[]; title: string }>;
+  // Appends the configured product brands as columns of the mega menu.
+  withBrands?: boolean;
 }
 
 export type BrandSocialPlatform =

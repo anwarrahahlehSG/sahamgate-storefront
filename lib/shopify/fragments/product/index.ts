@@ -166,7 +166,13 @@ export const PRODUCT_CARD_FRAGMENT = gql(
         currencyCode
       }
     }
+    requiresSellingPlan
+    variantsCount {
+      count
+    }
     selectedOrFirstAvailableVariant {
+      id
+      availableForSale
       selectedOptions {
         name
         value

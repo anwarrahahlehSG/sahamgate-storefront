@@ -62,7 +62,7 @@ function ProductCardImage({
           src={src}
           alt={alt}
           {...(width && height ? { height, width } : { fill: true })}
-          className="absolute inset-0 size-full object-cover"
+          className="absolute inset-0 size-full object-cover transition-transform duration-(--brand-duration-slower) ease-brand motion-safe:group-hover/card:scale-103"
           loading={loading}
           sizes="100vw"
         />

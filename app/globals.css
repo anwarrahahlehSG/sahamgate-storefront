@@ -10,6 +10,8 @@
   --color-shop: #5A31F4;
   --color-surface-alt: var(--surface-alt);
   --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-primary-deep: var(--primary-deep);
   --color-atmosphere-citrus: var(--atmosphere-citrus);
   --color-atmosphere-floral: var(--atmosphere-floral);
   --color-atmosphere-fresh: var(--atmosphere-fresh);
@@ -56,6 +58,17 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --ease-brand: var(--brand-ease);
+  --animate-hero-progress: hero-progress linear forwards;
+
+  @keyframes hero-progress {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
 }
 
 :root {
@@ -84,6 +97,8 @@
   --ring: var(--brand-gulf);
   --surface-alt: var(--brand-dune);
   --signal: var(--brand-saffron);
+  --signal-ink: var(--brand-saffron-ink);
+  --primary-deep: var(--brand-gulf-deep);
   --atmosphere-citrus: var(--brand-atmosphere-citrus);
   --atmosphere-floral: var(--brand-atmosphere-floral);
   --atmosphere-fresh: var(--brand-atmosphere-fresh);

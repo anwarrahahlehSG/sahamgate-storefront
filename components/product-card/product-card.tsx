@@ -12,6 +12,7 @@ import {
   ProductCardSkeleton,
   ProductCardTitle,
 } from "./components";
+import { QuickAddButton } from "./quick-add-button";
 
 export interface ProductCardProps {
   loading?: "eager" | "lazy";
@@ -22,8 +23,8 @@ export interface ProductCardProps {
 export function ProductCard({ loading, outOfStockText, product }: ProductCardProps) {
   const href = buildProductUrl(product.handle, product.defaultVariantSelectedOptions ?? []);
   return (
-    <Link href={href}>
-      <ProductCardRoot>
+    <ProductCardRoot className="relative">
+      <Link href={href} className="group/card">
         <ProductCardImageContainer>
           <ProductCardImage
             src={product.featuredImage?.url}
@@ -45,8 +46,16 @@ export function ProductCard({ loading, outOfStockText, product }: ProductCardPro
             />
           </ProductCardContent>
         </ProductCardImageContainer>
-      </ProductCardRoot>
-    </Link>
+      </Link>
+      {/* A sibling of the link, never inside it: a button nested in an anchor is invalid. */}
+      {product.quickAddVariantId && (
+        <QuickAddButton
+          className="absolute end-2.5 top-2.5"
+          label={`Add ${product.title} to cart`}
+          merchandiseId={product.quickAddVariantId}
+        />
+      )}
+    </ProductCardRoot>
   );
 }
 
