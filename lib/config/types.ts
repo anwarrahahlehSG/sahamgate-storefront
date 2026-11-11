@@ -121,6 +121,17 @@ export interface ShopConfig {
     discountBadge: {
       isEnabled: boolean;
     };
+    // The shipping promise shown at the top of campaign landing pages. Wording mirrors the live
+    // store's shipping policy; Shopify still calculates the real shipping charge at checkout.
+    freeShipping: {
+      // Delivery time as stated in the shipping policy, or null to leave it out.
+      deliveryEstimate: string | null;
+      isEnabled: boolean;
+      // Order value (in shop currency) that qualifies. null until the business confirms it, in
+      // which case the band says "qualifying orders" exactly as the live store does.
+      minimumOrderAmount: number | null;
+      policyUrl: string;
+    };
   };
   pdp: {
     bundles: {

@@ -134,6 +134,12 @@ export const shopConfig = {
     discountBadge: {
       isEnabled: false,
     },
+    freeShipping: {
+      deliveryEstimate: "UAE delivery in 1–3 business days",
+      isEnabled: true,
+      minimumOrderAmount: null,
+      policyUrl: "/policies/shipping-policy",
+    },
   },
   pdp: {
     bundles: {
