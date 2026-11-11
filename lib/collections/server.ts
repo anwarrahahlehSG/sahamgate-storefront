@@ -1,4 +1,5 @@
 import { parseCollectionParams, serializeCollectionParams } from "@shopify/hydrogen";
+import type { ProductFilter } from "@shopify/hydrogen";
 import { cacheLife, cacheTag } from "next/cache";
 
 import { getBrowseSort, PRODUCTS_PER_PAGE } from "@/lib/collections";
@@ -100,9 +101,10 @@ function recordToSearchParams(
   return params;
 }
 
-// A short, fixed slice of a collection for homepage rails. Unlike browse pages it has no cursor,
-// so caching it can't drift or duplicate products.
+// A short, fixed slice of a collection for homepage rails and landing pages. Unlike browse pages
+// it has no cursor, so caching it can't drift or duplicate products.
 export async function getCollectionProductsPreview(params: {
+  filters?: ProductFilter[];
   handle: string;
   limit: number;
   locale?: CommerceLocale;
@@ -113,6 +115,7 @@ export async function getCollectionProductsPreview(params: {
 
   const { products } = await fetchCollectionProducts({
     collection: params.handle,
+    filters: params.filters,
     limit: params.limit,
     locale: params.locale,
   });
