@@ -45,8 +45,8 @@ export function SocialLinks({ links }: { links: readonly SocialLink[] }) {
   );
 }
 
-function SocialIcon({ platform }: { platform: string }) {
-  const cls = "size-5";
+export function SocialIcon({ className, platform }: { className?: string; platform: string }) {
+  const cls = className ?? "size-5";
 
   switch (platform) {
     case "facebook":

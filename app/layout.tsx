@@ -15,6 +15,7 @@ import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { AnnouncementBar } from "@/components/nav/announcement-bar";
 import { SiteSchema } from "@/components/schema/site-schema";
+import { WhatsAppButton } from "@/components/whatsapp/whatsapp-button";
 import { botIdProtectedRoutes } from "@/lib/botid";
 import { seedCartData } from "@/lib/cart/server";
 import { shopConfig } from "@/lib/config";
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
           <Footer />
+          <WhatsAppButton />
           <CartUI />
           <Suspense>
             <ActionBar>{shopConfig.agent.isEnabled && <AgentButton />}</ActionBar>

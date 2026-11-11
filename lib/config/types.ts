@@ -31,9 +31,14 @@ export interface BrandConfig {
   name: string;
   // Top-level header links, in order. Links with columns open a mega menu.
   navigation: BrandNavLink[];
+  // Store landline in E.164 digits, e.g. "97142804967". Shown as a call link in the footer.
+  phone: string | null;
   social: Record<BrandSocialPlatform, string | null>;
   supportEmail: string | null;
   supportedLocales: string[];
+  // WhatsApp chat number in E.164 digits without "+", e.g. "971561403483". Drives the floating
+  // chat button and the footer WhatsApp links; null hides them.
+  whatsapp: string | null;
 }
 
 export type ShopBrand = ({ collection: string } | { searchQuery: string }) & {
@@ -59,13 +64,7 @@ export interface BrandNavLink extends BrandLink {
   withBrands?: boolean;
 }
 
-export type BrandSocialPlatform =
-  | "facebook"
-  | "instagram"
-  | "tiktok"
-  | "whatsapp"
-  | "x"
-  | "youtube";
+export type BrandSocialPlatform = "facebook" | "instagram" | "tiktok" | "x" | "youtube";
 
 export type CommerceLocale = Pick<I18nConfig, "country" | "language">;
 

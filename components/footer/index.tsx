@@ -5,6 +5,7 @@ import { MenuLink } from "@/components/nav/menu-link";
 import { Container } from "@/components/ui/container";
 import { Sections } from "@/components/ui/sections";
 import { shopConfig } from "@/lib/config";
+import { formatPhoneNumber, getEmailUrl, getPhoneUrl, getWhatsAppUrl } from "@/lib/contact";
 import type { MenuItem } from "@/lib/menu/types";
 import { getShopPolicies } from "@/lib/policies/server";
 
@@ -12,17 +13,29 @@ import { SocialLinks } from "./social-links";
 import type { SocialLink } from "./social-links";
 
 export async function Footer() {
-  const socialLinks = Object.entries(shopConfig.brand.social).flatMap(([platform, url]) =>
-    url ? [{ platform, url } as SocialLink] : [],
-  );
+  const whatsappUrl = getWhatsAppUrl();
+  const socialLinks = [
+    ...Object.entries(shopConfig.brand.social).flatMap(([platform, url]) =>
+      url ? [{ platform, url } as SocialLink] : [],
+    ),
+    ...(whatsappUrl ? [{ platform: "whatsapp", url: whatsappUrl } as const] : []),
+  ];
   const items: MenuItem[] = [];
   const policies = await getShopPolicies({}).catch(() => []);
   return (
     <footer>
-      {/* pb-22 clears the fixed agent ActionBar pill when it renders */}
-      <Container className={cn("pt-20 pb-10", shopConfig.agent.isEnabled && "pb-22")}>
+      {/* Bottom padding clears the fixed agent ActionBar pill and WhatsApp button when they render */}
+      <Container
+        className={cn(
+          "pt-20 pb-10",
+          shopConfig.agent.isEnabled && "pb-22",
+          shopConfig.brand.whatsapp && "pb-24",
+          shopConfig.brand.whatsapp && shopConfig.agent.isEnabled && "pb-38",
+        )}
+      >
         <Sections className="gap-10">
           {items.length > 0 && <FooterMenu items={items} />}
+          <FooterContact />
           <div className="flex flex-col sm:flex-row items-center justify-between gap-5">
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-start">
               <p className="text-sm text-muted-foreground leading-5">
@@ -43,6 +56,43 @@ export async function Footer() {
         </Sections>
       </Container>
     </footer>
+  );
+}
+
+function FooterContact() {
+  const { phone, supportEmail, whatsapp } = shopConfig.brand;
+  const links = [
+    whatsapp && { href: getWhatsAppUrl(), label: "WhatsApp", value: formatPhoneNumber(whatsapp) },
+    phone && { href: getPhoneUrl(), label: "Call", value: formatPhoneNumber(phone) },
+    supportEmail && { href: getEmailUrl(), label: "Email", value: supportEmail },
+  ].filter((link) => !!link && !!link.href) as Array<{
+    href: string;
+    label: string;
+    value: string;
+  }>;
+
+  if (links.length === 0) return null;
+
+  return (
+    <div className="space-y-3">
+      <h3 className="text-sm font-semibold">Contact us</h3>
+      <ul className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-8">
+        {links.map((link) => (
+          <li key={link.label}>
+            <a
+              href={link.href}
+              {...(link.href.startsWith("https:")
+                ? { rel: "noopener noreferrer", target: "_blank" }
+                : {})}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <span className="font-medium text-foreground">{link.label}</span>{" "}
+              <span dir="ltr">{link.value}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
