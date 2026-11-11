@@ -86,16 +86,18 @@ const brand: BrandConfig = {
     { title: "Collections", url: "/collections" },
     { title: "Shop all", url: "/collections/all" },
   ],
+  // From the live store's Contact Us page.
+  phone: "97142804967",
   social: {
     facebook: "https://www.facebook.com/profile.php?id=61575978154923",
     instagram: "https://www.instagram.com/sahamgateshop",
     tiktok: "https://www.tiktok.com/@saham.gate",
-    whatsapp: null,
     x: null,
     youtube: null,
   },
-  supportEmail: null,
+  supportEmail: "support@sahamgate.com",
   supportedLocales: ["en-AE", "ar-AE"],
+  whatsapp: "971561403483",
 };
 
 export const shopConfig = {
